@@ -133,3 +133,25 @@ Menu (vlnky), telefon, e-mail, lokace — ručně kreslené v Affinity, vyčišt
 
 ## 9. Kompetitivní reference (beze změny z dřívějška)
 Angel Luxury (vizuální benchmark), Antara Spa Wellness (motion), TAWAN/Sansei/AURA/Vítězná/Garbo (ceníková struktura, typografický prostor).
+
+---
+
+## 10. Rozhodnutí ze session 19. 8. 2026 (wireframe grill + foto asset plán)
+
+- **Nav:** sticky, průhledný přes Hero, při scrollu získá pozadí (ref. Venetian Nail Spa). CTA "Rezervovat" žije trvale v nav, Hero nemá vlastní CTA tlačítko.
+- **Mapa (Kde mě najdeš):** ilustrativní grafika v paletě, ne embed Google Maps.
+- **Patička:** minimální. Legal blok odděleně od "Kde mě najdeš":
+  - Sídlo/provozovatel: Milada Vondrušová, IČO 69455058, U Hrušky 307/13a, Motol, 150 00 Praha 5
+  - Provozovna (tlačítko → scroll na sekci): Karlovy Vary, Floating Phoenix
+  - GDPR a obchodní podmínky — potřeba text, doporučeno ověřit s právníkem/GDPR poradcem
+  - AI upravované/generované fotky — pravděpodobně vyžaduje disclosure (EU AI Act), přesné znění needěje ověřeno, needelat bez právní konzultace
+  - Podpis: Milada nemá k dispozici, nepoužívat
+- **Foto sada (F1, real assets místo placeholderů):**
+  - Hero: atmosféra — len/textilie s protisvětlem, rozostřené lehátko v rohu (kontext bez popisnosti), bez textu v obrázku
+  - O Miladě: reálný portrét (upravený, teplé světlo)
+  - Služby/Tělo: detail rukou na zádech, s ručníkem
+  - Služby/Obličej: detail rukou/prstů u hlavy a ucha
+  - Služby/Access: detail jedné ruky, jen špičky prstů na spánku (ne propletené ruce — AI limitace)
+  - Napříč sadou: konzistentní francouzská manikúra, teplý filmový grading (`#291B10`/`#D4821E`/`#FFC564`), žádné vyhlazené AI ruce/pleť
+  - Fotky nahrává Tereza sama přímo do repozitáře.
+- `wireframe.html` (needschválený pokus) smazán, nebyl uchováván jako referenční.
