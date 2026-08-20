@@ -155,3 +155,25 @@ Angel Luxury (vizuální benchmark), Antara Spa Wellness (motion), TAWAN/Sansei/
   - Napříč sadou: konzistentní francouzská manikúra, teplý filmový grading (`#291B10`/`#D4821E`/`#FFC564`), žádné vyhlazené AI ruce/pleť
   - Fotky nahrává Tereza sama přímo do repozitáře.
 - `wireframe.html` (needschválený pokus) smazán, nebyl uchováván jako referenční.
+
+---
+
+## 11. F1 stavba — `wireframe.html` na branch `claude/prvni-faze` (19.–20. 8. 2026)
+
+Skeleton se skutečným obsahem (reálné fotky, texty, nav) — struktura hotová, čeká na F2 (tokeny/typografie z design systému).
+
+**"AI-first" pravidlo — trvale platí napříč projektem:**
+- Žádné dlouhé pomlčky (—) v copy. Nikdy.
+- Žádné dekorativní šipky (→, ↓) — ani scroll cue, ani cross-link, ani na tlačítkách.
+- Žádné číslované/kruhové bubliny pro kroky nebo číslované seznamy — obecně žádné "AI landing page" komponentové vzory (feature card grid, numbered steps in circles, seznam-řádek+tlačítko jako pricing table).
+- Kroky "Příchod/Dotek/Proměna/Odchod" — bez čísel vůbec (ani jako tichá typografická číslice). Otevřeno, jak přesně vizuálně odlišit čtyři kroky bez číslování — řeší se ve F2.
+- Parochí paralelismy v copy ("cítíte to, neřešíte to") jsou OK, pokud je píše Tereza/Milada — Claude podobný vzor sám negeneruje.
+- Rozdíl "co to dělá" vs. "jak to vypadá": mechaniky (price-reveal na klik, sticky nav s fade při scrollu) zůstávají — byly grillované, obhájené. Řeší se jen vizuální balení, ne zahazovat mechaniku kvůli tomu, že vizuál byl generický.
+
+**Rozhodnuto v rámci F1 gril kola (foto/UI úpravy):**
+- Fotky ve Službách bez rámečku/border-radius — editorial, foto leží v ploše, ne v "kartě".
+- Kontaktní ikony v Rezervaci zvětšené (34px) — vlastní kresba nese váhu, ne layout.
+- Patička: jeden tichý sloupec, bez podtržených odkazů jako menu, legal obsah jako poznámka pod čarou.
+- Nápad "ceník jako oboustranná karta" (foto vlevo, ceník vpravo, tištěný vzhled) zvážen a zamítnut — nekompatibilní s tím, že ceny jsou skryté za klikem (tištěný ceník ukazuje ceny rovnou). Zůstává současný stackovaný seznam, jen užší (max 640px), ať cena není daleko od názvu služby.
+
+**Otevřené:** vizuální řešení "kroky bez čísel", přesný tvar sub-header karet a footeru ve F2.
