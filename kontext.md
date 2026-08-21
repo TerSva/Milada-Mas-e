@@ -177,3 +177,21 @@ Skeleton se skutečným obsahem (reálné fotky, texty, nav) — struktura hotov
 - Nápad "ceník jako oboustranná karta" (foto vlevo, ceník vpravo, tištěný vzhled) zvážen a zamítnut — nekompatibilní s tím, že ceny jsou skryté za klikem (tištěný ceník ukazuje ceny rovnou). Zůstává současný stackovaný seznam, jen užší (max 640px), ať cena není daleko od názvu služby.
 
 **Otevřené:** vizuální řešení "kroky bez čísel", přesný tvar sub-header karet a footeru ve F2.
+
+---
+
+## 12. Workflow pravidlo — struktura souborů a sdílené komponenty (20. 8. 2026)
+
+**Kontext:** Tereza staví PULS v Angularu, kde komponentová knihovna přirozeně brzdí přílišnou AI kreativitu — nová komponenta se netvoří ad hoc, táhne se z knihovny. Tenhle projekt Angular nepotřebuje (jednostránkový web), ale stejná disciplína musí platit jinak.
+
+**Rozdělení souborů:**
+- `wireframe.html` — jen struktura/obsah
+- `styles.css` — veškerý vzhled, oddělený od HTML
+- `design-system-2.html` — zdroj pravdy pro tokeny (barvy, spacing, radius, typografie) ve F2 — netvoří se nové hodnoty na místě, tahá se odsud
+
+**Pravidlo pro budoucí změny komponent — platí natrvalo:**
+Než se změní cokoliv sdíleného (třída v `styles.css`, token v design systému), **musí se nejdřív zeptat**, jestli je změna:
+- **globální** — má platit pro komponentu všude, kde se používá → mění se sdílený soubor, nebo
+- **lokální/jednorázová** — platí jen pro jednu konkrétní situaci → nesmí se sáhnout na sdílenou komponentu (to by to nechtěně změnilo všude jinde), řeší se lokálním override na místě.
+
+Tohle se netýká jen CSS — platí obecně, kdykoli se upravuje cokoliv, co je použité na víc než jednom místě.
