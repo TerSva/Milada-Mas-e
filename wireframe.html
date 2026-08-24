@@ -106,7 +106,7 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   position:relative; z-index:1;
   font-family:'Karla',sans-serif; font-weight:500; font-size:15px;
   background:var(--cta); color:var(--dark); border:none; border-radius:var(--radius);
-  padding:13px 26px; cursor:pointer; display:inline-block;
+  padding:13px 26px; cursor:pointer; display:inline-block; text-decoration:none;
   transform:scale(1) translateY(0); transition:transform 450ms ease-out;
 }
 .cta-btn:hover{ animation:breathe 950ms cubic-bezier(.37,0,.22,1) forwards; }
@@ -131,7 +131,11 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 /* ---------- HERO (Příchod — bez paralaxu, statické) ---------- */
 .hero{ position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; background:var(--dark); }
 .hero img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
-.hero::after{ content:""; position:absolute; inset:0; background:rgba(41,27,16,.45); z-index:1; }
+.hero::before{ content:""; position:absolute; inset:0; z-index:1; background:rgba(41,27,16,.45); }
+.hero::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:1; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(252,241,229,0) 0%, rgba(252,241,229,0) 25%, rgba(252,241,229,.55) 70%, rgba(252,241,229,1) 100%);
+}
 .hero .inner{ position:relative; z-index:2; padding:var(--sp-8) var(--sp-3); color:var(--light-surface); max-width:1280px; margin:0 auto; width:100%; }
 .hero h1{
   font-family:'Fraunces', serif;
@@ -143,11 +147,15 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   .hero .inner{ padding:var(--sp-12) var(--sp-6); }
 }
 
-/* ---------- O MILADĚ (Dotek — jedna paralax vrstva 0.25×) ---------- */
+/* ---------- O MILADĚ (Dotek — statický glow, parallax odstraněn 24.8. kvůli rendering artefaktu na švu) ---------- */
 .o-milade{ position:relative; background:var(--light-bg); overflow:hidden; }
 .o-milade .layer{
   position:absolute; inset:-15% -10%; z-index:0;
-  background:radial-gradient(circle at 30% 40%, rgba(154,115,56,0.18), transparent 60%);
+  background:radial-gradient(circle at 30% 60%, rgba(154,115,56,0.18), transparent 60%);
+}
+.o-milade::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:0; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(230,216,188,0) 0%, rgba(230,216,188,0) 25%, rgba(230,216,188,.55) 70%, rgba(230,216,188,1) 100%);
 }
 .o-milade .inner{ position:relative; z-index:1; display:flex; flex-direction:column; gap:var(--sp-4); padding:var(--sp-8) 0; }
 .o-milade .photo{ width:100%; border-radius:var(--radius); overflow:hidden; }
@@ -166,14 +174,20 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 }
 
 /* ---------- SLUŽBY (Proměna — scannable, bez motion, bez rámečku fotek) ---------- */
-.sluzby{ padding:var(--sp-8) 0; background:var(--elevated); }
+.sluzby{ position:relative; padding:var(--sp-8) 0; background:var(--elevated); overflow:hidden; }
+.sluzby::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:0; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(252,241,229,0) 0%, rgba(252,241,229,0) 25%, rgba(252,241,229,.55) 70%, rgba(252,241,229,1) 100%);
+}
+.sluzby .container{ position:relative; z-index:1; }
+.sluzby-heading{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h2); margin:0 0 var(--sp-3); color:var(--dark); }
 .sluzby-note{ font-size:var(--fs-caption); color:var(--dark-surface); margin:0 0 var(--sp-4); }
 .sub-block{ margin-bottom:var(--sp-6); }
 .sub-block:last-child{ margin-bottom:0; }
 .sub-header{ display:flex; flex-direction:column; gap:var(--sp-2); margin-bottom:var(--sp-2); }
 /* Lokální výjimka zrušena (24. 8. 2026): fotky ve Službách teď mají stejný radius jako foto O Miladě, sjednoceno na žádost Terezy. */
 .sub-header .photo{ width:100%; height:160px; overflow:hidden; border-radius:var(--radius); }
-.sub-header .photo img{ width:100%; height:100%; object-fit:cover; }
+.sub-header .photo img{ width:100%; height:100%; object-fit:cover; filter:saturate(0.82) hue-rotate(-6deg) brightness(1.02); }
 .sub-header h3{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h3); margin:0 0 4px; color:var(--dark); }
 .sub-header p{ font-size:var(--fs-small); color:var(--dark-surface); margin:0; }
 .service-list{ display:flex; flex-direction:column; max-width:640px; }
@@ -192,7 +206,7 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 .price-reveal.revealed .pr-label{ opacity:0; transform:translateY(-6px); position:absolute; right:8px; pointer-events:none; }
 .price-reveal.revealed .pr-value{ opacity:1; transform:translateY(0); position:static; pointer-events:auto; }
 @media (min-width:640px){
-  .sub-header{ flex-direction:row; align-items:center; }
+  .sub-header{ flex-direction:row; align-items:center; max-width:640px; }
   .sub-header .photo{ flex:0 0 240px; height:150px; }
 }
 @media (min-width:1024px){
@@ -200,17 +214,33 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   .sub-header .photo{ flex:0 0 320px; height:180px; }
 }
 
-/* ---------- KDE MĚ NAJDEŠ ---------- */
-.kde{ background:var(--light-bg); }
-.kde .inner{ display:flex; flex-direction:column; gap:var(--sp-3); padding:var(--sp-8) 0; }
-.kde .graphic{ width:100%; height:220px; background:var(--light-surface); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; }
-.kde .graphic img{ width:56px; opacity:.5; }
-.kde .text p{ font-size:var(--fs-body); color:var(--dark-surface); max-width:48ch; margin:0; }
-.kde .crosslink{ font-size:var(--fs-small); color:var(--decor); margin-top:var(--sp-2); }
+/* Access — vědomě odlišný "uzavírací" blok (foto vlevo, položky vpravo), viz konzultace se Sebastianem 24.8. */
+.sub-block--split .photo{ width:100%; height:220px; overflow:hidden; border-radius:var(--radius); margin-bottom:var(--sp-2); }
+.sub-block--split .photo img{ width:100%; height:100%; object-fit:cover; }
+.split-content h3{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h3); margin:0 0 4px; color:var(--dark); }
+.split-content > p{ font-size:var(--fs-small); color:var(--dark-surface); margin:0 0 var(--sp-3); }
 @media (min-width:640px){
-  .kde .inner{ flex-direction:row; align-items:center; }
-  .kde .graphic{ flex:1 1 55%; height:280px; }
-  .kde .text{ flex:1 1 45%; }
+  .sub-block--split{ display:flex; flex-direction:row; align-items:stretch; gap:var(--sp-4); }
+  .sub-block--split .photo{ flex:0 0 42%; height:auto; margin-bottom:0; }
+  .sub-block--split .split-content{ flex:1; display:flex; flex-direction:column; justify-content:center; }
+  .sub-block--split .split-content .service-list{ max-width:none; }
+}
+
+/* ---------- KDE MĚ NAJDEŠ ---------- */
+.kde{ position:relative; background:var(--light-bg); overflow:hidden; }
+.kde::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:0; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(41,27,16,0) 0%, rgba(41,27,16,0) 25%, rgba(41,27,16,.55) 70%, rgba(41,27,16,1) 100%);
+}
+.kde .inner{ position:relative; z-index:1; display:flex; flex-direction:column; gap:var(--sp-3); padding:var(--sp-8) 0; }
+.kde .graphic{ width:100%; background:var(--light-surface); border-radius:var(--radius); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:var(--sp-4) var(--sp-3); text-align:center; }
+.kde .graphic img{ width:44px; opacity:.5; }
+.kde .graphic-address{ font-size:var(--fs-caption); color:var(--dark-surface); margin:0; line-height:1.5; }
+.kde .text p{ font-size:var(--fs-body); color:var(--dark-surface); max-width:48ch; margin:0; }
+@media (min-width:640px){
+  .kde .inner{ flex-direction:row; align-items:stretch; }
+  .kde .graphic{ flex:1 1 40%; }
+  .kde .text{ flex:1 1 60%; display:flex; align-items:center; }
 }
 
 /* ---------- REZERVACE (Odchod — jedna tichá paralax vrstva 0.85×) ---------- */
@@ -219,10 +249,15 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   position:absolute; inset:-10% -10%; z-index:0;
   background:radial-gradient(circle at 50% 50%, rgba(255,197,100,0.08), transparent 60%);
 }
+.rezervace::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:0; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(21,14,8,0) 0%, rgba(21,14,8,0) 25%, rgba(21,14,8,.55) 70%, rgba(21,14,8,1) 100%);
+}
 .rezervace .container{ position:relative; z-index:1; }
 .rezervace h2{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h2); margin:0 0 var(--sp-1); }
-.rezervace .lede{ font-size:var(--fs-body); opacity:.8; margin:0 0 var(--sp-4); max-width:44ch; }
-.rezervace .embed{ min-height:260px; background:rgba(255,255,255,.06); border:1px dashed rgba(255,255,255,.25); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; font-size:var(--fs-small); opacity:.6; margin-bottom:var(--sp-4); }
+.rezervace .lede{ font-size:var(--fs-body); opacity:.8; margin:0 0 var(--sp-3); max-width:44ch; }
+.rezervace .booking-note{ font-size:var(--fs-body); opacity:.85; margin:0 0 var(--sp-3); max-width:44ch; }
+.rezervace .call-btn{ margin-bottom:var(--sp-4); }
 .contact-icons{ display:flex; flex-direction:column; gap:var(--sp-3); }
 .contact-icons .item{ display:flex; align-items:center; gap:var(--sp-2); min-height:44px; font-size:var(--fs-small); color:var(--light-surface); }
 .contact-icons .icon{ width:28px; height:28px; color:var(--spot); flex:0 0 auto; }
@@ -266,7 +301,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
       <li><a href="#sluzby">Služby</a></li>
       <li><a href="#kde">Kde mě najdeš</a></li>
     </ul>
-    <span class="nav-cta cta-wrap"><span class="cta-halo"></span><button class="cta-btn"><span class="btn-label">Rezervovat</span></button></span>
+    <span class="nav-cta cta-wrap"><span class="cta-halo"></span><a href="#rezervace" class="cta-btn"><span class="btn-label">Objednat se</span></a></span>
     <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
       <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
         <g stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -290,7 +325,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
       <a href="#o-milade">O mně</a>
       <a href="#sluzby">Služby</a>
       <a href="#kde">Kde mě najdeš</a>
-      <a href="#rezervace" class="cta-link">Rezervovat</a>
+      <a href="#rezervace" class="cta-link">Objednat se</a>
     </div>
   </div>
 </nav>
@@ -308,12 +343,12 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 
 <!-- ================= O MILADĚ (Dotek) ================= -->
 <section id="o-milade" class="o-milade">
-  <div class="layer" data-speed="0.25"></div>
+  <div class="layer"></div>
   <div class="container inner">
     <div class="photo"><img src="o-milade.jpg" alt="Milada"></div>
     <div class="text">
       <h2>Něco málo o mně</h2>
-      <p class="intro">Jsem Milada a věřím v léčivou sílu doteku. Ke každé masáži přistupuji s pochopením pro to, co vaše tělo i mysl zrovna potřebují. Tady máte prostor jen pro sebe – uzemnit se, vypnout a nic neřešit. Uvolní se napětí ve svalech i v myšlenkách. Odcházet budete odpočatí, lehčí a s pocitem, že se můžete znovu zhluboka nadechnout.</p>
+      <p class="intro">Jsem Milada a věřím v léčivou sílu doteku. Ke každé masáži přistupuji s pochopením pro to, co Vaše tělo i mysl zrovna potřebují. Tady máte prostor jen pro sebe – uzemnit se, vypnout a nic neřešit. Uvolní se napětí ve svalech i v myšlenkách. Odcházet budete odpočatí, lehčí a s pocitem, že se můžete znovu zhluboka nadechnout.</p>
     </div>
   </div>
 </section>
@@ -321,6 +356,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 <!-- ================= SLUŽBY (Proměna, + Ceník) ================= -->
 <section id="sluzby" class="sluzby">
   <div class="container">
+    <h2 class="sluzby-heading">S čím Vám ráda pomohu</h2>
     <p class="sluzby-note">Cena se zobrazí klepnutím na položku.</p>
     <div class="sub-block">
       <div class="sub-header">
@@ -350,14 +386,15 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
       </div>
     </div>
 
-    <div class="sub-block">
-      <div class="sub-header">
-        <div class="photo"><img src="sluzby-access.jpg" alt="Access"></div>
-        <div><h3>Jemný dotek <span style="font-weight:400;opacity:.6;">(Access Consciousness)</span></h3><p>Laskavý energetický dotek, který uvolňuje napětí a navrací tělu i mysli lehkost.</p></div>
-      </div>
-      <div class="service-list">
-        <div class="price-row"><span class="svc-name">Access Bars<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div><p class="svc-desc">Relaxační dotyk 32 bodů na hlavě, který uvolňuje napětí uložené v myšlenkách a životních vzorcích.</p></div>
-        <div class="price-row"><span class="svc-name">Access Facelift<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div><p class="svc-desc">Jemná energetická práce s obličejem, která čistí, vyhlazuje a navrací pokožce svěžest.</p></div>
+    <div class="sub-block sub-block--split">
+      <div class="photo"><img src="sluzby-access.jpg" alt="Access"></div>
+      <div class="split-content">
+        <h3>Jemný dotek <span style="font-weight:400;opacity:.6;">(Access Consciousness)</span></h3>
+        <p>Laskavý energetický dotek, který uvolňuje napětí a navrací tělu i mysli lehkost.</p>
+        <div class="service-list">
+          <div class="price-row"><span class="svc-name">Access Bars<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div><p class="svc-desc">Relaxační dotyk 32 bodů na hlavě, který uvolňuje napětí uložené v myšlenkách a životních vzorcích.</p></div>
+          <div class="price-row"><span class="svc-name">Access Facelift<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div><p class="svc-desc">Jemná energetická práce s obličejem, která čistí, vyhlazuje a navrací pokožce svěžest.</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -366,10 +403,12 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 <!-- ================= KDE MĚ NAJDEŠ ================= -->
 <section id="kde" class="kde">
   <div class="container inner">
-    <div class="graphic"><img src="lokace-2.svg" alt=""></div>
+    <div class="graphic">
+      <img src="lokace-2.svg" alt="">
+      <p class="graphic-address">Floating Phoenix (Hotel Marttel)<br>Lidická 447/12, 360 01 Karlovy Vary<br>Parkování v bezprostřední blízkosti.</p>
+    </div>
     <div class="text">
-      <p>Najdete mě v Karlových Varech, v prostoru Floating Phoenix. Objednávejte se předem. Bez pevné otevírací doby, ale s časem, který bude patřit jen vám.</p>
-      <p class="crosslink">Floating Phoenix</p>
+      <p>Najdete mě v Karlových Varech. Objednávejte se předem. Bez pevné otevírací doby, ale s časem, který bude patřit jen Vám.</p>
     </div>
   </div>
 </section>
@@ -380,12 +419,9 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
   <div class="container">
     <h2>Rezervace</h2>
     <p class="lede">Odcházíte lehčí. A víte, že se chcete vrátit.</p>
-    <div class="embed">Reservio embed</div>
+    <p class="booking-note">Objednávky beru osobně po telefonu. Domluvíme si čas, který bude jen Váš.</p>
+    <a href="tel:+420602587537" class="cta-btn call-btn"><span class="btn-label">Zavolat: +420 602 587 537</span></a>
     <div class="contact-icons">
-      <div class="item">
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M 52.151426075700044,37.120165893407 C 52.151426075700044,37.120165893407 27.58539640069131,56.3902822697937 32.91324178994603,79.675493837727 C 38.24108717920075,102.96070540566029 103.2842565914359,179.73902808280243 140.42074221033607,166.913916123583 C 177.55722782923624,154.08880416436355 173.18789668057173,142.70419005605933 160.79058439525204,131.80577056951898 C 152.57814302103338,124.5851953005665 145.64673838866617,113.88891362176167 135.04536718931655,115.8219893936324 C 129.6439640366163,116.80714523554342 119.93886589340303,121.07012521236567 115.52426842877202,130.741887370911 L 72.52126826061601,89.250442625199 C 72.52126826061601,89.250442625199 89.64325227493708,77.26792615927708 88.36447884888406,63.717245858607 C 86.85824218509941,47.76431729548004 59.86593797428742,28.87400722099639 52.151426075700044,37.120165893407"/></g></svg>
-        <span>telefon</span>
-      </div>
       <div class="item">
         <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M 34.541411270697,49.5275560170989 C 35.25647951756427,49.90523075793624 82.00885959507595,39.58025334745008 163.118351559135,49.5275560170989 C 165.1146777372976,50.80851218557672 171.93151130837933,138.45146599103168 165.374087353669,147.00574283616794 C 165.374087353669,147.00574283616794 130.94366405379932,166.5798289592061 32.28567547616299,150.36783251721198 C 26.763634251143767,147.6960919173423 28.430623003304394,46.29546713705531 34.541411270697,49.5275560170989"/><path d="M 38.69537934768,59.205372269338 C 50.04057268360717,71.07343400469921 98.61920397624401,121.059955196614 98.61920397624401,121.059955196614 L 159.69540984766502,58.05991702994402"/></g></svg>
         <span>e-mail</span>
