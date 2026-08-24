@@ -184,10 +184,11 @@ Skeleton se skutečným obsahem (reálné fotky, texty, nav) — struktura hotov
 
 **Kontext:** Tereza staví PULS v Angularu, kde komponentová knihovna přirozeně brzdí přílišnou AI kreativitu — nová komponenta se netvoří ad hoc, táhne se z knihovny. Tenhle projekt Angular nepotřebuje (jednostránkový web), ale stejná disciplína musí platit jinak.
 
-**Rozdělení souborů:**
-- `wireframe.html` — jen struktura/obsah
-- `styles.css` — veškerý vzhled, oddělený od HTML
-- `design-system-2.html` — zdroj pravdy pro tokeny (barvy, spacing, radius, typografie) ve F2 — netvoří se nové hodnoty na místě, tahá se odsud
+**Oprava (20. 8. 2026):** fyzické rozdělení do `wireframe.html` + `styles.css` bylo špatný výklad tohohle pravidla — stránka se pak nedala jen tak otevřít a vidět fungovat, potřeba mít oba soubory pohromadě (stejný problém jako s fotkami, co se nezobrazovaly). Tereza to upřesnila: **stránka má být jeden kompletní dokument**, komponenty mají být oddělené jen **organizačně** — jasně pojmenované, přehledně komentované bloky CSS uvnitř jednoho `<style>` v `wireframe.html`, ne fyzicky rozdělené soubory. `styles.css` smazán, CSS zpátky v `wireframe.html`.
+
+**Struktura zdroje pravdy:**
+- `wireframe.html` — jeden kompletní dokument (struktura i vzhled), CSS uvnitř organizované po jasně pojmenovaných komponentách (nadpisy sekcí v komentářích)
+- `design-system-2.html` — samostatný referenční dokument (jako Storybook) pro tokeny (barvy, spacing, radius, typografie) — zůstává oddělený záměrně, není to "stránka", je to knihovna, ze které se čte, ne mění
 
 **Pravidlo pro budoucí změny komponent — platí natrvalo:**
 Než se změní cokoliv sdíleného (třída v `styles.css`, token v design systému), **musí se nejdřív zeptat**, jestli je změna:
@@ -195,3 +196,23 @@ Než se změní cokoliv sdíleného (třída v `styles.css`, token v design syst
 - **lokální/jednorázová** — platí jen pro jednu konkrétní situaci → nesmí se sáhnout na sdílenou komponentu (to by to nechtěně změnilo všude jinde), řeší se lokálním override na místě.
 
 Tohle se netýká jen CSS — platí obecně, kdykoli se upravuje cokoliv, co je použité na víc než jednom místě.
+
+---
+
+## 13. F2+F3 build — tokeny, komponenty, motion (20. 8. 2026)
+
+Sloučeno do jednoho kroku (Tereza: fáze jsou u tohoto rozsahu zbytečně přísné, obojí bylo už kompletně specifikované). F4 (polish/QA) zůstává samostatný závěrečný průchod.
+
+**"Kroky" zrušeny jako komponenta.** Tereza: "je to nepřirozené, ten příběh poneseme stránkou jinak." Čtyřfázový oblouk se nezobrazuje jako číslovaný seznam — nese ho copy a struktura stránky (sekce už mají fázové labely Příchod/Dotek/Proměna/Odchod). O Miladě sekce přejmenována na **"Něco málo o mně"**, text nahrazen finální Miladinou/Terezinou verzí (viz `wireframe.html`).
+
+**Natažené komponenty z `design-system-2.html`** (čtení, zdroj se neměnil): CTA (`.cta-btn`/`.cta-wrap`/`.cta-halo`/`breathe` keyframe), price-reveal (`.price-row`/`.price-reveal`/`.pr-label`/`.pr-value` — nahradilo dřívější "cena ▸" tlačítko, jeden z identifikovaných AI-generic vzorů), hamburger (44×44px, radius 12px, `menu.svg` inline jako SVG kvůli `currentColor`), plná paleta/typografie/spacing/radius tokeny.
+
+**Zdokumentovaná lokální výjimka:** foto ve Službách nemá radius/rámeček (design systém jinak definuje kartu s radius 18px přes `.subsection-demo`) — Miladin web se od něj v tomhle jednom bodě vědomě odchyluje, design-system-2.html zůstal beze změny.
+
+**Ikony (Rezervace) přepsány z `<img src>` + `filter:invert(1)` na inline SVG** — `currentColor` funguje jen takhle, invert byl provizorní hack z F1.
+
+**Motion — jen schválený bookend oblouk:** kinetická typografie na Hero H1 (per-word stagger, stejná logika jako motion demo), paralax vrstva O Miladě (Dotek, 0.25×) a Rezervace (Odchod, 0.85×), Hero beze motion (Příchod = nejtěžší/nejtišší fáze). `prefers-reduced-motion` respektováno.
+
+**Mimo scope, zůstává otevřené:** paralax ve Službách (rozhodnuto už dřív že ne), třetí vrstva pro Proměnu, přesné tempo kinetického reveal per fáze, obousměrnost efektu, mobilní performance test. Ceny v `pr-value` jsou ilustrační placeholder, čekají na reálná čísla od Milady.
+
+**Zbývá F4:** kontrast, focus stavy, touch targets ověřit v prohlížeči, reduced-motion test, responsivita 360/640/1024.
