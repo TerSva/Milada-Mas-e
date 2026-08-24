@@ -31,6 +31,7 @@
   --radius:18px;
   --fs-caption:12px; --fs-small:14px; --fs-body:16px; --fs-h3:20px; --fs-h2:28px; --fs-h1:40px;
   --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-6:48px; --sp-8:64px; --sp-12:96px;
+  --nav-h:84px;
 }
 
 *{ box-sizing:border-box; }
@@ -46,6 +47,7 @@ body{
 }
 img{ display:block; max-width:100%; }
 .container{ max-width:1280px; margin:0 auto; padding:0 var(--sp-3); }
+#o-milade, #sluzby, #kde, #rezervace{ scroll-margin-top:var(--nav-h); }
 
 /* ---------- NAV ---------- */
 nav.wire{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(41,27,16,0); transition:background 700ms ease; }
@@ -54,7 +56,10 @@ nav.wire .bar{ display:flex; align-items:center; justify-content:space-between; 
 nav.wire .wordmark{ display:flex; align-items:center; }
 nav.wire .wordmark img{ height:52px; width:auto; display:block; }
 nav.wire .links{ display:none; gap:var(--sp-3); font-size:15px; font-weight:600; color:var(--light-surface); list-style:none; margin:0; padding:0; }
-nav.wire .links a{ color:inherit; text-decoration:none; }
+nav.wire .links a{ position:relative; color:inherit; text-decoration:none; padding-bottom:4px; transition:color 200ms ease; }
+nav.wire .links a:hover{ color:var(--spot); }
+nav.wire .links a.active{ color:var(--spot); }
+nav.wire .links a.active::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--cta); border-radius:2px; }
 nav.wire .nav-cta{ display:none; }
 nav.wire .nav-cta .cta-btn{ padding:9px 18px; font-size:var(--fs-small); }
 nav.wire .hamburger{
@@ -133,8 +138,13 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 .hero img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
 .hero::before{ content:""; position:absolute; inset:0; z-index:1; background:rgba(41,27,16,.45); }
 .hero::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:1; pointer-events:none;
-  background:linear-gradient(to bottom, rgba(252,241,229,0) 0%, rgba(252,241,229,0) 25%, rgba(252,241,229,.55) 70%, rgba(252,241,229,1) 100%);
+  content:""; position:absolute; left:0; right:0; bottom:0; height:170px; z-index:1; pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(252,241,229,0) 0%,
+    rgba(252,241,229,.06) 40%,
+    rgba(252,241,229,.3) 70%,
+    rgba(252,241,229,.7) 88%,
+    rgba(252,241,229,1) 100%);
 }
 .hero .inner{ position:relative; z-index:2; padding:var(--sp-8) var(--sp-3); color:var(--light-surface); max-width:1280px; margin:0 auto; width:100%; }
 .hero h1{
@@ -154,8 +164,13 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   background:radial-gradient(circle at 30% 60%, rgba(154,115,56,0.18), transparent 60%);
 }
 .o-milade::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:0; pointer-events:none;
-  background:linear-gradient(to bottom, rgba(230,216,188,0) 0%, rgba(230,216,188,0) 25%, rgba(230,216,188,.55) 70%, rgba(230,216,188,1) 100%);
+  content:""; position:absolute; left:0; right:0; bottom:0; height:60px; z-index:0; pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(230,216,188,0) 0%,
+    rgba(230,216,188,.06) 40%,
+    rgba(230,216,188,.3) 70%,
+    rgba(230,216,188,.7) 88%,
+    rgba(230,216,188,1) 100%);
 }
 .o-milade .inner{ position:relative; z-index:1; display:flex; flex-direction:column; gap:var(--sp-4); padding:var(--sp-8) 0; }
 .o-milade .photo{ width:100%; border-radius:var(--radius); overflow:hidden; }
@@ -173,23 +188,47 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   .o-milade .photo img{ height:480px; }
 }
 
+/* ---------- RECENZE (tichý pull-quote — sdílí --elevated se Službami, žádný nový fade seam) ---------- */
+.recenze{ background:var(--elevated); padding:var(--sp-6) 0; }
+.recenze .quote-panel{
+  position:relative; max-width:680px; margin:0 auto; overflow:hidden;
+  background:var(--light-surface); border-radius:var(--radius);
+  padding:var(--sp-6) var(--sp-4); text-align:center;
+}
+.recenze .quote-glyph{
+  position:absolute; top:0; left:var(--sp-3); z-index:0; pointer-events:none;
+  font-family:'Karla',sans-serif; font-weight:700; font-size:80px; line-height:1;
+  color:var(--decor); opacity:.18;
+}
+.recenze .quote-eyebrow{
+  position:relative; z-index:1;
+  font-family:'Karla',sans-serif; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--decor); margin:0 0 var(--sp-2);
+}
+.recenze .quote-highlight{ position:relative; z-index:1; font-family:'Karla',sans-serif; font-style:italic; font-weight:600; font-size:24px; line-height:1.4; color:var(--dark); margin:0 0 var(--sp-3); }
+.recenze .quote-body{ position:relative; z-index:1; font-size:var(--fs-body); color:var(--dark-surface); line-height:1.6; margin:0; }
+.recenze .quote-signature{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:6px; margin-top:var(--sp-3); }
+.recenze .signature-rule{ width:32px; height:2px; border-radius:2px; background:var(--decor); }
+.recenze .signature-name{ font-family:'Karla',sans-serif; font-style:italic; font-size:var(--fs-small); color:var(--decor); }
+
 /* ---------- SLUŽBY (Proměna — scannable, bez motion, bez rámečku fotek) ---------- */
 .sluzby{ position:relative; padding:var(--sp-8) 0; background:var(--elevated); overflow:hidden; }
 .sluzby::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:0; pointer-events:none;
-  background:linear-gradient(to bottom, rgba(252,241,229,0) 0%, rgba(252,241,229,0) 25%, rgba(252,241,229,.55) 70%, rgba(252,241,229,1) 100%);
+  content:""; position:absolute; left:0; right:0; bottom:0; height:60px; z-index:0; pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(252,241,229,0) 0%,
+    rgba(252,241,229,.06) 40%,
+    rgba(252,241,229,.3) 70%,
+    rgba(252,241,229,.7) 88%,
+    rgba(252,241,229,1) 100%);
 }
 .sluzby .container{ position:relative; z-index:1; }
 .sluzby-heading{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h2); margin:0 0 var(--sp-3); color:var(--dark); }
 .sluzby-note{ font-size:var(--fs-caption); color:var(--dark-surface); margin:0 0 var(--sp-4); }
-.sub-block{ margin-bottom:var(--sp-6); }
+.sub-block{ margin-bottom:var(--sp-8); padding-top:var(--sp-6); }
+.sub-block:first-of-type{ padding-top:0; }
 .sub-block:last-child{ margin-bottom:0; }
-.sub-header{ display:flex; flex-direction:column; gap:var(--sp-2); margin-bottom:var(--sp-2); }
-/* Lokální výjimka zrušena (24. 8. 2026): fotky ve Službách teď mají stejný radius jako foto O Miladě, sjednoceno na žádost Terezy. */
-.sub-header .photo{ width:100%; height:160px; overflow:hidden; border-radius:var(--radius); }
-.sub-header .photo img{ width:100%; height:100%; object-fit:cover; filter:saturate(0.82) hue-rotate(-6deg) brightness(1.02); }
-.sub-header h3{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h3); margin:0 0 4px; color:var(--dark); }
-.sub-header p{ font-size:var(--fs-small); color:var(--dark-surface); margin:0; }
+.sub-block + .sub-block{ border-top:1px solid var(--decor); }
 .service-list{ display:flex; flex-direction:column; max-width:640px; }
 .price-row{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; cursor:pointer; padding:14px 12px; margin:0 -12px; border-radius:10px; border-bottom:1px solid var(--decor); gap:var(--sp-1) 0; transition:background-color 320ms ease-out; }
 .price-row:hover, .price-row:active{ background-color:rgba(246,238,215,0.45); }
@@ -205,32 +244,37 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 .price-reveal .pr-value{ position:absolute; right:8px; color:var(--dark); font-weight:700; opacity:0; transform:translateY(6px); pointer-events:none; }
 .price-reveal.revealed .pr-label{ opacity:0; transform:translateY(-6px); position:absolute; right:8px; pointer-events:none; }
 .price-reveal.revealed .pr-value{ opacity:1; transform:translateY(0); position:static; pointer-events:auto; }
-@media (min-width:640px){
-  .sub-header{ flex-direction:row; align-items:center; max-width:640px; }
-  .sub-header .photo{ flex:0 0 240px; height:150px; }
-}
 @media (min-width:1024px){
   .sluzby .container{ max-width:960px; }
-  .sub-header .photo{ flex:0 0 320px; height:180px; }
 }
 
-/* Access — vědomě odlišný "uzavírací" blok (foto vlevo, položky vpravo), viz konzultace se Sebastianem 24.8. */
+/* Všechny tři bloky sdílí stejný foto+obsah vzor (24. 8. 2026, rozhodnuto po diskuzi s Sebastianem
+   o "cik cak" referenci — kaskáduje se jen foto/hlavička skrz střídání stran, ceník zůstává vždy
+   jeden čitelný sloupec pod hlavičkou, nikdy vedle sousedního bloku). */
 .sub-block--split .photo{ width:100%; height:220px; overflow:hidden; border-radius:var(--radius); margin-bottom:var(--sp-2); }
 .sub-block--split .photo img{ width:100%; height:100%; object-fit:cover; }
+.sub-block--split img[src="sluzby-oblicej.jpg"], .sub-block--split img[src="sluzby-telo.jpg"]{ filter:saturate(0.82) hue-rotate(-6deg) brightness(1.02); }
 .split-content h3{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h3); margin:0 0 4px; color:var(--dark); }
 .split-content > p{ font-size:var(--fs-small); color:var(--dark-surface); margin:0 0 var(--sp-3); }
 @media (min-width:640px){
   .sub-block--split{ display:flex; flex-direction:row; align-items:stretch; gap:var(--sp-4); }
   .sub-block--split .photo{ flex:0 0 42%; height:auto; margin-bottom:0; }
+  .sub-block--photo-capped .photo{ max-height:420px; }
   .sub-block--split .split-content{ flex:1; display:flex; flex-direction:column; justify-content:center; }
   .sub-block--split .split-content .service-list{ max-width:none; }
+  .sub-block--split-reverse{ flex-direction:row-reverse; }
 }
 
 /* ---------- KDE MĚ NAJDEŠ ---------- */
 .kde{ position:relative; background:var(--light-bg); overflow:hidden; }
 .kde::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:0; pointer-events:none;
-  background:linear-gradient(to bottom, rgba(41,27,16,0) 0%, rgba(41,27,16,0) 25%, rgba(41,27,16,.55) 70%, rgba(41,27,16,1) 100%);
+  content:""; position:absolute; left:0; right:0; bottom:0; height:60px; z-index:0; pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(41,27,16,0) 0%,
+    rgba(41,27,16,.06) 40%,
+    rgba(41,27,16,.3) 70%,
+    rgba(41,27,16,.7) 88%,
+    rgba(41,27,16,1) 100%);
 }
 .kde .inner{ position:relative; z-index:1; display:flex; flex-direction:column; gap:var(--sp-3); padding:var(--sp-8) 0; }
 .kde .graphic{ width:100%; background:var(--light-surface); border-radius:var(--radius); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:var(--sp-4) var(--sp-3); text-align:center; }
@@ -250,14 +294,20 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   background:radial-gradient(circle at 50% 50%, rgba(255,197,100,0.08), transparent 60%);
 }
 .rezervace::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:48px; z-index:0; pointer-events:none;
-  background:linear-gradient(to bottom, rgba(21,14,8,0) 0%, rgba(21,14,8,0) 25%, rgba(21,14,8,.55) 70%, rgba(21,14,8,1) 100%);
+  content:""; position:absolute; left:0; right:0; bottom:0; height:60px; z-index:0; pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(21,14,8,0) 0%,
+    rgba(21,14,8,.06) 40%,
+    rgba(21,14,8,.3) 70%,
+    rgba(21,14,8,.7) 88%,
+    rgba(21,14,8,1) 100%);
 }
 .rezervace .container{ position:relative; z-index:1; }
 .rezervace h2{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h2); margin:0 0 var(--sp-1); }
 .rezervace .lede{ font-size:var(--fs-body); opacity:.8; margin:0 0 var(--sp-3); max-width:44ch; }
 .rezervace .booking-note{ font-size:var(--fs-body); opacity:.85; margin:0 0 var(--sp-3); max-width:44ch; }
-.rezervace .call-btn{ margin-bottom:var(--sp-4); }
+.rezervace .call-btn{ margin-bottom:var(--sp-4); display:inline-flex; align-items:center; gap:var(--sp-2); }
+.rezervace .call-btn .icon{ width:20px; height:20px; flex:0 0 auto; }
 .contact-icons{ display:flex; flex-direction:column; gap:var(--sp-3); }
 .contact-icons .item{ display:flex; align-items:center; gap:var(--sp-2); min-height:44px; font-size:var(--fs-small); color:var(--light-surface); }
 .contact-icons .icon{ width:28px; height:28px; color:var(--spot); flex:0 0 auto; }
@@ -266,9 +316,14 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 }
 
 /* ---------- FOOTER ---------- */
-/* F1 rozhodnutí (grill): jeden sloupec vždy, tiché, bez link-list hierarchie — legal obsah je poznámka pod čarou, ne navigace. */
+/* Revidováno (Sebastian, 24. 8. 2026): footer byl jeden centrovaný blok bez vizuální váhy.
+   Nově dva sloupce — logo jako identity anchor vlevo, legal obsah (stále "poznámka pod čarou",
+   ne navigace) vpravo. Na mobilu se sloupce skládají pod sebe. */
 footer.wire{ background:#150e08; color:var(--decor); padding:var(--sp-4) 0; font-size:11px; }
-footer.wire .inner{ display:flex; flex-direction:column; gap:10px; max-width:60ch; }
+footer.wire .inner{ display:flex; flex-direction:column; gap:var(--sp-4); }
+footer.wire .brand{ display:flex; align-items:flex-start; }
+footer.wire .footer-logo{ height:42px; width:auto; opacity:.85; }
+footer.wire .legal-block{ max-width:60ch; }
 footer.wire .legal{ display:flex; flex-direction:column; gap:2px; }
 footer.wire .legal b{ color:var(--light-surface); font-size:11px; font-weight:600; }
 footer.wire .provozovna-btn{
@@ -279,6 +334,9 @@ footer.wire .provozovna-btn{
 footer.wire .links{ display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-top:6px; }
 footer.wire .links a{ color:var(--decor); text-decoration:none; }
 footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
+@media (min-width:640px){
+  footer.wire .inner{ flex-direction:row; justify-content:space-between; align-items:flex-start; gap:var(--sp-6); }
+}
 
 /* ---------- prefers-reduced-motion ---------- */
 @media (prefers-reduced-motion: reduce){
@@ -299,7 +357,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     <ul class="links">
       <li><a href="#o-milade">O mně</a></li>
       <li><a href="#sluzby">Služby</a></li>
-      <li><a href="#kde">Kde mě najdeš</a></li>
+      <li><a href="#kde">Kde mě najdete</a></li>
     </ul>
     <span class="nav-cta cta-wrap"><span class="cta-halo"></span><a href="#rezervace" class="cta-btn"><span class="btn-label">Objednat se</span></a></span>
     <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
@@ -324,7 +382,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     <div class="panel-inner">
       <a href="#o-milade">O mně</a>
       <a href="#sluzby">Služby</a>
-      <a href="#kde">Kde mě najdeš</a>
+      <a href="#kde">Kde mě najdete</a>
       <a href="#rezervace" class="cta-link">Objednat se</a>
     </div>
   </div>
@@ -353,36 +411,54 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
   </div>
 </section>
 
+<!-- ================= RECENZE (tichý pull-quote mezi Dotek a Proměna) ================= -->
+<section class="recenze">
+  <div class="container">
+    <div class="quote-panel">
+      <span class="quote-glyph" aria-hidden="true">„</span>
+      <p class="quote-eyebrow">Recenze</p>
+      <p class="quote-highlight">„Pocit, že jsem v těch nejlepších rukou.“</p>
+      <p class="quote-body">Vaše profesionalita byla úžasná, přesně jste věděla, co děláte, a s jemností jste našla každý můj citlivý bod. Místo napětí přišla lehkost a jistota, že jsem na správném místě. Vaše péče, klid a radost mi udělaly nesmírně dobře.</p>
+      <div class="quote-signature">
+        <span class="signature-rule"></span>
+        <span class="signature-name">D., klientka</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= SLUŽBY (Proměna, + Ceník) ================= -->
 <section id="sluzby" class="sluzby">
   <div class="container">
     <h2 class="sluzby-heading">S čím Vám ráda pomohu</h2>
     <p class="sluzby-note">Cena se zobrazí klepnutím na položku.</p>
-    <div class="sub-block">
-      <div class="sub-header">
-        <div class="photo"><img src="sluzby-oblicej.jpg" alt="Obličej"></div>
-        <div><h3>Obličej</h3><p>Ošetření a měkké techniky pro tvář a hlavu.</p></div>
-      </div>
-      <div class="service-list">
-        <div class="price-row"><span class="svc-name">Masáž obličeje<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1000 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Masáž obličeje s maskou<span class="svc-time">90 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Masáž obličeje a celého těla, dvě masáže<span class="svc-time">120 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1900 Kč</span></div></div>
+    <div class="sub-block sub-block--split sub-block--photo-capped">
+      <div class="photo"><img src="sluzby-oblicej.jpg" alt="Obličej"></div>
+      <div class="split-content">
+        <h3>Obličej</h3>
+        <p>Ošetření a měkké techniky pro tvář a hlavu.</p>
+        <div class="service-list">
+          <div class="price-row"><span class="svc-name">Masáž obličeje<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1000 Kč</span></div></div>
+          <div class="price-row"><span class="svc-name">Masáž obličeje s maskou<span class="svc-time">90 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div></div>
+          <div class="price-row"><span class="svc-name">Masáž obličeje a celého těla, dvě masáže<span class="svc-time">120 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1900 Kč</span></div></div>
+        </div>
       </div>
     </div>
 
-    <div class="sub-block">
-      <div class="sub-header">
-        <div class="photo"><img src="sluzby-telo.jpg" alt="Tělo"></div>
-        <div><h3>Tělo</h3><p>Klasická, aromaterapeutická a lymfatická péče.</p></div>
-      </div>
-      <div class="service-list">
-        <div class="price-row"><span class="svc-name">Klasická masáž<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">900 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Klasická masáž<span class="svc-time">30 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">450 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Regenerační masáž<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">900 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Masáž aromatická<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1000 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Lymfatická masáž částečná<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">900 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Lymfatická masáž celková<span class="svc-time">90 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Masáž obličeje a celého těla, dvě masáže<span class="svc-time">120 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1900 Kč</span></div></div>
+    <div class="sub-block sub-block--split sub-block--split-reverse">
+      <div class="photo"><img src="sluzby-telo.jpg" alt="Tělo"></div>
+      <div class="split-content">
+        <h3>Tělo</h3>
+        <p>Klasická, aromaterapeutická a lymfatická péče.</p>
+        <div class="service-list">
+          <div class="price-row"><span class="svc-name">Klasická masáž<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">900 Kč</span></div></div>
+          <div class="price-row"><span class="svc-name">Klasická masáž<span class="svc-time">30 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">450 Kč</span></div></div>
+          <div class="price-row"><span class="svc-name">Regenerační masáž<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">900 Kč</span></div></div>
+          <div class="price-row"><span class="svc-name">Masáž aromatická<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1000 Kč</span></div></div>
+          <div class="price-row"><span class="svc-name">Lymfatická masáž částečná<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">900 Kč</span></div></div>
+          <div class="price-row"><span class="svc-name">Lymfatická masáž celková<span class="svc-time">90 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div></div>
+          <div class="price-row"><span class="svc-name">Masáž obličeje a celého těla, dvě masáže<span class="svc-time">120 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1900 Kč</span></div></div>
+        </div>
       </div>
     </div>
 
@@ -408,7 +484,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
       <p class="graphic-address">Floating Phoenix (Hotel Marttel)<br>Lidická 447/12, 360 01 Karlovy Vary<br>Parkování v bezprostřední blízkosti.</p>
     </div>
     <div class="text">
-      <p>Najdete mě v Karlových Varech. Objednávejte se předem. Bez pevné otevírací doby, ale s časem, který bude patřit jen Vám.</p>
+      <p>Pracuji bez pevné otevírací doby, abych se mohla každému plně věnovat. Návštěvu si proto vždy domluvte předem, díky tomu na Vás čeká naprostý klid a prostor připravený jen pro Vaši relaxaci.</p>
     </div>
   </div>
 </section>
@@ -417,10 +493,10 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 <section id="rezervace" class="rezervace">
   <div class="layer" data-speed="0.85"></div>
   <div class="container">
-    <h2>Rezervace</h2>
+    <h2>Objednejte se na masáž</h2>
     <p class="lede">Odcházíte lehčí. A víte, že se chcete vrátit.</p>
-    <p class="booking-note">Objednávky beru osobně po telefonu. Domluvíme si čas, který bude jen Váš.</p>
-    <a href="tel:+420602587537" class="cta-btn call-btn"><span class="btn-label">Zavolat: +420 602 587 537</span></a>
+    <p class="booking-note">Každému tělu věnuji plnou péči, proto objednávky přijímám osobně po telefonu. Zavolejte mi a společně najdeme termín, který bude patřit jen Vám.</p>
+    <a href="tel:+420602587537" class="cta-btn call-btn"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M 52.151426075700044,37.120165893407 C 52.151426075700044,37.120165893407 27.58539640069131,56.3902822697937 32.91324178994603,79.675493837727 C 38.24108717920075,102.96070540566029 103.2842565914359,179.73902808280243 140.42074221033607,166.913916123583 C 177.55722782923624,154.08880416436355 173.18789668057173,142.70419005605933 160.79058439525204,131.80577056951898 C 152.57814302103338,124.5851953005665 145.64673838866617,113.88891362176167 135.04536718931655,115.8219893936324 C 129.6439640366163,116.80714523554342 119.93886589340303,121.07012521236567 115.52426842877202,130.741887370911 L 72.52126826061601,89.250442625199 C 72.52126826061601,89.250442625199 89.64325227493708,77.26792615927708 88.36447884888406,63.717245858607 C 86.85824218509941,47.76431729548004 59.86593797428742,28.87400722099639 52.151426075700044,37.120165893407"/></g></svg><span class="btn-label">Zavolat: +420 602 587 537</span></a>
     <div class="contact-icons">
       <div class="item">
         <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M 34.541411270697,49.5275560170989 C 35.25647951756427,49.90523075793624 82.00885959507595,39.58025334745008 163.118351559135,49.5275560170989 C 165.1146777372976,50.80851218557672 171.93151130837933,138.45146599103168 165.374087353669,147.00574283616794 C 165.374087353669,147.00574283616794 130.94366405379932,166.5798289592061 32.28567547616299,150.36783251721198 C 26.763634251143767,147.6960919173423 28.430623003304394,46.29546713705531 34.541411270697,49.5275560170989"/><path d="M 38.69537934768,59.205372269338 C 50.04057268360717,71.07343400469921 98.61920397624401,121.059955196614 98.61920397624401,121.059955196614 L 159.69540984766502,58.05991702994402"/></g></svg>
@@ -436,13 +512,16 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 
 <footer class="wire" id="provozovatel">
   <div class="container inner">
-    <div class="legal">
-      <b>Milada Vondrušová</b>
-      <span>IČO 69455058</span>
-      <span>Sídlo/provozovatel: U Hrušky 307/13a, Motol, 150 00 Praha 5</span>
-      <button class="provozovna-btn" onclick="document.getElementById('kde').scrollIntoView({behavior:'smooth'})">Provozovna: Karlovy Vary</button>
+    <div class="brand">
+      <img src="logo.svg" alt="Masáže Milada" class="footer-logo">
     </div>
-    <div>
+    <div class="legal-block">
+      <div class="legal">
+        <b>Milada Vondrušová</b>
+        <span>IČO 69455058</span>
+        <span>Sídlo/provozovatel: U Hrušky 307/13a, Motol, 150 00 Praha 5</span>
+        <button class="provozovna-btn" onclick="document.getElementById('kde').scrollIntoView({behavior:'smooth'})">Provozovna: Karlovy Vary</button>
+      </div>
       <div class="links">
         <a href="#">Obchodní podmínky</a>
         <a href="#">Zpracování osobních údajů</a>
@@ -466,6 +545,32 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
   }
   window.addEventListener('scroll', onScrollNav, {passive:true});
   onScrollNav();
+
+  function updateNavHeight(){
+    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  }
+  updateNavHeight();
+  window.addEventListener('resize', updateNavHeight);
+
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('nav.wire .links a'));
+  var spySections = ['o-milade', 'sluzby', 'kde']
+    .map(function(id){ return document.getElementById(id); })
+    .filter(Boolean);
+  if(navLinks.length && spySections.length && 'IntersectionObserver' in window){
+    var intersectingIds = {};
+    var spyObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ intersectingIds[entry.target.id] = true; }
+        else{ delete intersectingIds[entry.target.id]; }
+      });
+      navLinks.forEach(function(a){ a.classList.remove('active'); });
+      var activeId = spySections.map(function(s){ return s.id; }).filter(function(id){ return intersectingIds[id]; })[0];
+      if(!activeId) return;
+      var link = navLinks.find(function(a){ return a.getAttribute('href') === '#' + activeId; });
+      if(link) link.classList.add('active');
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    spySections.forEach(function(section){ spyObserver.observe(section); });
+  }
 
   hamburger.addEventListener('click', function(){
     var isOpen = panel.classList.toggle('open');
