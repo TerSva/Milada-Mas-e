@@ -167,18 +167,21 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 
 /* ---------- SLUŽBY (Proměna — scannable, bez motion, bez rámečku fotek) ---------- */
 .sluzby{ padding:var(--sp-8) 0; background:var(--elevated); }
+.sluzby-note{ font-size:var(--fs-caption); color:var(--dark-surface); margin:0 0 var(--sp-4); }
 .sub-block{ margin-bottom:var(--sp-6); }
 .sub-block:last-child{ margin-bottom:0; }
 .sub-header{ display:flex; flex-direction:column; gap:var(--sp-2); margin-bottom:var(--sp-2); }
-/* Lokální výjimka (schváleno v gril kole): žádný radius/rámeček kolem foto, na rozdíl od design-system-2.html .subsection-demo — editorial, ne karta. */
-.sub-header .photo{ width:100%; height:160px; overflow:hidden; }
+/* Lokální výjimka zrušena (24. 8. 2026): fotky ve Službách teď mají stejný radius jako foto O Miladě, sjednoceno na žádost Terezy. */
+.sub-header .photo{ width:100%; height:160px; overflow:hidden; border-radius:var(--radius); }
 .sub-header .photo img{ width:100%; height:100%; object-fit:cover; }
 .sub-header h3{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h3); margin:0 0 4px; color:var(--dark); }
 .sub-header p{ font-size:var(--fs-small); color:var(--dark-surface); margin:0; }
 .service-list{ display:flex; flex-direction:column; max-width:640px; }
-.price-row{ display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--decor); gap:var(--sp-2); }
+.price-row{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; cursor:pointer; padding:14px 12px; margin:0 -12px; border-radius:10px; border-bottom:1px solid var(--decor); gap:var(--sp-1) 0; transition:background-color 320ms ease-out; }
+.price-row:hover, .price-row:active{ background-color:rgba(246,238,215,0.45); }
 .price-row .svc-name{ font-weight:600; font-size:var(--fs-small); color:var(--dark); }
 .price-row .svc-time{ font-size:var(--fs-caption); color:var(--dark-surface); margin-left:10px; }
+.price-row .svc-desc{ flex:0 0 100%; font-size:var(--fs-caption); color:var(--dark-surface); margin:0; }
 .price-reveal{
   position:relative; cursor:pointer; font-size:var(--fs-small);
   min-height:44px; min-width:64px; display:flex; align-items:center; justify-content:flex-end; padding:0 8px;
@@ -297,7 +300,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
   <img src="hero.jpg" alt="">
   <div class="inner">
     <h1>
-      <span class="kinetic-line" data-kinetic-load><span class="word">Tady</span> <span class="word">můžete</span> <span class="word">konečně</span> <span class="word">vypnout.</span></span>
+      <span class="kinetic-line" data-kinetic-load><span class="word">Tady</span> <span class="word">si</span> <span class="word">můžete</span><br><span class="word">konečně</span> <span class="word">odpočinout.</span></span>
     </h1>
     <p class="sub reveal-after">Klasická i terapeutická péče v Karlových Varech. Zastavte se, nadechněte se a odejděte o poznání lehčí.</p>
   </div>
@@ -318,16 +321,16 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 <!-- ================= SLUŽBY (Proměna, + Ceník) ================= -->
 <section id="sluzby" class="sluzby">
   <div class="container">
+    <p class="sluzby-note">Cena se zobrazí klepnutím na položku.</p>
     <div class="sub-block">
       <div class="sub-header">
         <div class="photo"><img src="sluzby-oblicej.jpg" alt="Obličej"></div>
         <div><h3>Obličej</h3><p>Ošetření a měkké techniky pro tvář a hlavu.</p></div>
       </div>
       <div class="service-list">
-        <div class="price-row"><span class="svc-name">Ošetření a masáž obličeje<span class="svc-time">50 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">890 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Měkké a mobilizační techniky<span class="svc-time">40 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">790 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Bukální a liftingová masáž obličeje<span class="svc-time">45 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">890 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Myofasciální techniky a bukální masáž<span class="svc-time">45 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">890 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Masáž obličeje<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1000 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Masáž obličeje s maskou<span class="svc-time">90 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Masáž obličeje a celého těla, dvě masáže<span class="svc-time">120 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1900 Kč</span></div></div>
       </div>
     </div>
 
@@ -337,21 +340,24 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
         <div><h3>Tělo</h3><p>Klasická, aromaterapeutická a lymfatická péče.</p></div>
       </div>
       <div class="service-list">
-        <div class="price-row"><span class="svc-name">Klasická masáž: Relaxační / Regenerační<span class="svc-time">dle domluvy</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">od 990 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Klasická masáž: dle partie<span class="svc-time">záda/šíje, DK, HK, celotělová</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">od 590 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Aromaterapeutická masáž<span class="svc-time">dle domluvy</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">od 990 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Lymfatické masáže<span class="svc-time">dle domluvy</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">od 990 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Klasická masáž<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">900 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Klasická masáž<span class="svc-time">30 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">450 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Regenerační masáž<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">900 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Masáž aromatická<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1000 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Lymfatická masáž částečná<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">900 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Lymfatická masáž celková<span class="svc-time">90 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Masáž obličeje a celého těla, dvě masáže<span class="svc-time">120 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1900 Kč</span></div></div>
       </div>
     </div>
 
     <div class="sub-block">
       <div class="sub-header">
         <div class="photo"><img src="sluzby-access.jpg" alt="Access"></div>
-        <div><h3>Jemný dotek <span style="font-weight:400;opacity:.6;">(Access Consciousness)</span></h3><p>Lehký, energetický dotek. Bez masáže v klasickém smyslu.</p></div>
+        <div><h3>Jemný dotek <span style="font-weight:400;opacity:.6;">(Access Consciousness)</span></h3><p>Laskavý energetický dotek, který uvolňuje napětí a navrací tělu i mysli lehkost.</p></div>
       </div>
       <div class="service-list">
-        <div class="price-row"><span class="svc-name">Access Bars<span class="svc-time">popis čeká na Miladu</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div></div>
-        <div class="price-row"><span class="svc-name">Access Facelift<span class="svc-time">popis čeká na Miladu</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div></div>
+        <div class="price-row"><span class="svc-name">Access Bars<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div><p class="svc-desc">Relaxační dotyk 32 bodů na hlavě, který uvolňuje napětí uložené v myšlenkách a životních vzorcích.</p></div>
+        <div class="price-row"><span class="svc-name">Access Facelift<span class="svc-time">60 min</span></span><div class="price-reveal"><span class="pr-label">cena</span><span class="pr-value">1200 Kč</span></div><p class="svc-desc">Jemná energetická práce s obličejem, která čistí, vyhlazuje a navrací pokožce svěžest.</p></div>
       </div>
     </div>
   </div>
@@ -434,8 +440,10 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     hamburger.setAttribute('aria-expanded', 'false');
   });
 
-  document.querySelectorAll('.price-reveal').forEach(function(el){
-    el.addEventListener('click', function(){ el.classList.add('revealed'); });
+  document.querySelectorAll('.price-row').forEach(function(row){
+    var reveal = row.querySelector('.price-reveal');
+    if(!reveal) return;
+    row.addEventListener('click', function(){ reveal.classList.toggle('revealed'); });
   });
 
   var parallaxLayers = Array.prototype.slice.call(document.querySelectorAll('[data-speed]'));
