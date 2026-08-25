@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@6..144,100..900,0..100&family=Karla:wght@400;500;600;700&display=swap">
 <!-- TODO: nahradit https://REPLACE-DOMENA.cz/ reálnou doménou, až bude vybraná -->
 <link rel="canonical" href="https://REPLACE-DOMENA.cz/">
 <title>Masáže Milada — Karlovy Vary</title>
@@ -49,7 +52,6 @@
   Jeden kompletní dokument — CSS je uvnitř organizované po jasně
   pojmenovaných komponentách (viz nadpisy sekcí níž), ne ve zvláštním souboru.
 */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@6..144,100..900,0..100&family=Karla:wght@400;500;600;700&display=swap');
 
 :root{
   --dark:#291B10;
@@ -247,13 +249,13 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 .recenze .quote-eyebrow{
   position:relative; z-index:1;
   font-family:'Karla',sans-serif; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--decor); margin:0 0 var(--sp-2);
+  color:var(--dark-surface); margin:0 0 var(--sp-2);
 }
 .recenze .quote-highlight{ position:relative; z-index:1; font-family:'Karla',sans-serif; font-style:italic; font-weight:600; font-size:24px; line-height:1.4; color:var(--dark); margin:0 0 var(--sp-3); }
 .recenze .quote-body{ position:relative; z-index:1; font-size:var(--fs-body); color:var(--dark-surface); line-height:1.6; margin:0; }
 .recenze .quote-signature{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:6px; margin-top:var(--sp-3); }
 .recenze .signature-rule{ width:32px; height:2px; border-radius:2px; background:var(--decor); }
-.recenze .signature-name{ font-family:'Karla',sans-serif; font-style:italic; font-size:var(--fs-small); color:var(--decor); }
+.recenze .signature-name{ font-family:'Karla',sans-serif; font-style:italic; font-size:var(--fs-small); color:var(--dark-surface); }
 
 /* ---------- SLUŽBY (Proměna — scannable, bez motion, bez rámečku fotek) ---------- */
 .sluzby{
@@ -386,7 +388,7 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 /* Revidováno (Sebastian, 24. 8. 2026): footer byl jeden centrovaný blok bez vizuální váhy.
    Nově dva sloupce — logo jako identity anchor vlevo, legal obsah (stále "poznámka pod čarou",
    ne navigace) vpravo. Na mobilu se sloupce skládají pod sebe. */
-footer.wire{ background:#150e08; color:var(--decor); padding:var(--sp-4) 0; font-size:11px; }
+footer.wire{ background:#150e08; color:var(--cta); padding:var(--sp-4) 0; font-size:11px; }
 footer.wire .inner{ display:flex; flex-direction:column; gap:var(--sp-4); }
 footer.wire .brand{ display:flex; align-items:flex-start; }
 footer.wire .footer-logo{ height:42px; width:auto; opacity:.85; }
@@ -394,13 +396,13 @@ footer.wire .legal-block{ max-width:60ch; }
 footer.wire .legal{ display:flex; flex-direction:column; gap:2px; }
 footer.wire .legal b{ color:var(--light-surface); font-size:11px; font-weight:600; }
 footer.wire .provozovna-btn{
-  align-self:flex-start; border:none; color:var(--decor); background:transparent;
+  align-self:flex-start; border:none; color:var(--cta); background:transparent;
   padding:4px 0; font-size:11px; cursor:pointer; text-decoration:underline; text-underline-offset:2px;
   min-height:32px; margin-top:2px;
 }
 footer.wire .links{ display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-top:6px; }
-footer.wire .links a{ color:var(--decor); text-decoration:none; }
-footer.wire .legal-link{ color:var(--decor); text-decoration:underline; text-underline-offset:2px; background:none; border:none; padding:0; font-size:11px; font-family:'Karla',sans-serif; cursor:pointer; }
+footer.wire .links a{ color:var(--cta); text-decoration:none; }
+footer.wire .legal-link{ color:var(--cta); text-decoration:underline; text-underline-offset:2px; background:none; border:none; padding:0; font-size:11px; font-family:'Karla',sans-serif; cursor:pointer; }
 
 /* ---------- GDPR modal ---------- */
 .gdpr-modal{ position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:var(--sp-3); opacity:0; pointer-events:none; transition:opacity 250ms ease; }
@@ -481,7 +483,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 
 <!-- ================= HERO (Příchod — bez paralaxu) ================= -->
 <header id="hero" class="hero">
-  <img src="hero.jpg" alt="Jemně splývající textilie v teplém, tlumeném světle">
+  <img src="hero.jpg" alt="Jemně splývající textilie v teplém, tlumeném světle" width="1376" height="768">
   <div class="inner">
     <h1>
       <span class="kinetic-line" data-kinetic-load><span class="word">Tady</span> <span class="word">si</span> <span class="word">můžete</span><br><span class="word">konečně</span> <span class="word">odpočinout.</span></span>
@@ -494,7 +496,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 <section id="o-milade" class="o-milade">
   <div class="layer"></div>
   <div class="container inner">
-    <div class="photo"><img src="o-milade.jpg" alt="Milada Vondrušová, masérka"></div>
+    <div class="photo"><img src="o-milade.jpg" alt="Milada Vondrušová, masérka" width="1376" height="768"></div>
     <div class="text">
       <h2>Něco málo o mně</h2>
       <p class="intro">Jsem Milada a věřím v léčivou sílu doteku. Ke každé masáži přistupuji s pochopením pro to, co Vaše tělo i mysl zrovna potřebují. Tady máte prostor jen pro sebe – uzemnit se, vypnout a nic neřešit. Uvolní se napětí ve svalech i v myšlenkách. Odcházet budete odpočatí, lehčí a s pocitem, že se můžete znovu zhluboka nadechnout.</p>
@@ -524,7 +526,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     <h2 class="sluzby-heading">S čím Vám ráda pomohu</h2>
     <p class="sluzby-note">Cena se zobrazí klepnutím na položku.</p>
     <div class="sub-block sub-block--split sub-block--photo-capped">
-      <div class="photo"><img src="sluzby-oblicej.jpg" alt="Masáž obličeje"></div>
+      <div class="photo"><img src="sluzby-oblicej.jpg" alt="Masáž obličeje" width="704" height="1524"></div>
       <div class="split-content">
         <h3>Obličej</h3>
         <p>Ošetření a měkké techniky pro tvář a hlavu.</p>
@@ -537,7 +539,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     </div>
 
     <div class="sub-block sub-block--split sub-block--split-reverse">
-      <div class="photo"><img src="sluzby-telo.jpg" alt="Masáž těla"></div>
+      <div class="photo"><img src="sluzby-telo.jpg" alt="Masáž těla" width="704" height="1524"></div>
       <div class="split-content">
         <h3>Tělo</h3>
         <p>Klasická, aromaterapeutická a lymfatická péče.</p>
@@ -554,7 +556,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     </div>
 
     <div class="sub-block sub-block--split">
-      <div class="photo"><img src="sluzby-access.jpg" alt="Jemný energetický dotek"></div>
+      <div class="photo"><img src="sluzby-access.jpg" alt="Jemný energetický dotek" width="1408" height="768"></div>
       <div class="split-content">
         <h3>Jemný dotek <span style="font-weight:400;opacity:.6;">(Access Consciousness)</span></h3>
         <p>Laskavý energetický dotek, který uvolňuje napětí a navrací tělu i mysli lehkost.</p>
