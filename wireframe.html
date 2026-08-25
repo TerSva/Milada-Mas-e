@@ -141,9 +141,11 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   content:""; position:absolute; left:0; right:0; bottom:0; height:170px; z-index:1; pointer-events:none;
   background:linear-gradient(to bottom,
     rgba(252,241,229,0) 0%,
-    rgba(252,241,229,.06) 40%,
-    rgba(252,241,229,.3) 70%,
-    rgba(252,241,229,.7) 88%,
+    rgba(252,241,229,.02) 16.7%,
+    rgba(252,241,229,.15) 33.3%,
+    rgba(252,241,229,.5) 50%,
+    rgba(252,241,229,.85) 66.7%,
+    rgba(252,241,229,.98) 83.3%,
     rgba(252,241,229,1) 100%);
 }
 .hero .inner{ position:relative; z-index:2; padding:var(--sp-8) var(--sp-3); color:var(--light-surface); max-width:1280px; margin:0 auto; width:100%; }
@@ -167,12 +169,14 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   content:""; position:absolute; left:0; right:0; bottom:0; height:60px; z-index:0; pointer-events:none;
   background:linear-gradient(to bottom,
     rgba(230,216,188,0) 0%,
-    rgba(230,216,188,.06) 40%,
-    rgba(230,216,188,.3) 70%,
-    rgba(230,216,188,.7) 88%,
+    rgba(230,216,188,.02) 16.7%,
+    rgba(230,216,188,.15) 33.3%,
+    rgba(230,216,188,.5) 50%,
+    rgba(230,216,188,.85) 66.7%,
+    rgba(230,216,188,.98) 83.3%,
     rgba(230,216,188,1) 100%);
 }
-.o-milade .inner{ position:relative; z-index:1; display:flex; flex-direction:column; gap:var(--sp-4); padding:var(--sp-8) 0; }
+.o-milade .inner{ position:relative; z-index:1; display:flex; flex-direction:column; gap:var(--sp-4); padding-top:var(--sp-8); padding-bottom:var(--sp-8); }
 .o-milade .photo{ width:100%; border-radius:var(--radius); overflow:hidden; }
 .o-milade .photo img{ width:100%; height:340px; object-fit:cover; }
 .o-milade h2{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h2); margin:0 0 var(--sp-2); color:var(--dark); }
@@ -189,7 +193,15 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 }
 
 /* ---------- RECENZE (tichý pull-quote — sdílí --elevated se Službami, žádný nový fade seam) ---------- */
-.recenze{ background:var(--elevated); padding:var(--sp-6) 0; }
+.recenze{
+  padding:var(--sp-6) 0;
+  background:radial-gradient(circle at 80% 85%,
+    rgba(212,130,30,.12) 0%,
+    rgba(212,130,30,.08) 20%,
+    rgba(212,130,30,.04) 35%,
+    rgba(212,130,30,.015) 50%,
+    rgba(212,130,30,0) 65%), var(--elevated);
+}
 .recenze .quote-panel{
   position:relative; max-width:680px; margin:0 auto; overflow:hidden;
   background:var(--light-surface); border-radius:var(--radius);
@@ -212,14 +224,24 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 .recenze .signature-name{ font-family:'Karla',sans-serif; font-style:italic; font-size:var(--fs-small); color:var(--decor); }
 
 /* ---------- SLUŽBY (Proměna — scannable, bez motion, bez rámečku fotek) ---------- */
-.sluzby{ position:relative; padding:var(--sp-8) 0; background:var(--elevated); overflow:hidden; }
+.sluzby{
+  position:relative; padding:var(--sp-8) 0; overflow:hidden;
+  background:radial-gradient(circle at 20% 15%,
+    rgba(212,130,30,.12) 0%,
+    rgba(212,130,30,.08) 20%,
+    rgba(212,130,30,.04) 35%,
+    rgba(212,130,30,.015) 50%,
+    rgba(212,130,30,0) 65%), var(--elevated);
+}
 .sluzby::after{
   content:""; position:absolute; left:0; right:0; bottom:0; height:60px; z-index:0; pointer-events:none;
   background:linear-gradient(to bottom,
     rgba(252,241,229,0) 0%,
-    rgba(252,241,229,.06) 40%,
-    rgba(252,241,229,.3) 70%,
-    rgba(252,241,229,.7) 88%,
+    rgba(252,241,229,.02) 16.7%,
+    rgba(252,241,229,.15) 33.3%,
+    rgba(252,241,229,.5) 50%,
+    rgba(252,241,229,.85) 66.7%,
+    rgba(252,241,229,.98) 83.3%,
     rgba(252,241,229,1) 100%);
 }
 .sluzby .container{ position:relative; z-index:1; }
@@ -266,25 +288,36 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
 }
 
 /* ---------- KDE MĚ NAJDEŠ ---------- */
-.kde{ position:relative; background:var(--light-bg); overflow:hidden; }
+.kde{
+  position:relative; overflow:hidden;
+  background:radial-gradient(circle 220px at 85% 20%,
+    rgba(212,130,30,.07) 0%,
+    rgba(212,130,30,.045) 20%,
+    rgba(212,130,30,.02) 35%,
+    rgba(212,130,30,.008) 50%,
+    rgba(212,130,30,0) 65%), var(--light-bg);
+}
 .kde::after{
   content:""; position:absolute; left:0; right:0; bottom:0; height:60px; z-index:0; pointer-events:none;
   background:linear-gradient(to bottom,
     rgba(41,27,16,0) 0%,
-    rgba(41,27,16,.06) 40%,
-    rgba(41,27,16,.3) 70%,
-    rgba(41,27,16,.7) 88%,
+    rgba(41,27,16,.02) 16.7%,
+    rgba(41,27,16,.15) 33.3%,
+    rgba(41,27,16,.5) 50%,
+    rgba(41,27,16,.85) 66.7%,
+    rgba(41,27,16,.98) 83.3%,
     rgba(41,27,16,1) 100%);
 }
-.kde .inner{ position:relative; z-index:1; display:flex; flex-direction:column; gap:var(--sp-3); padding:var(--sp-8) 0; }
+.kde .inner{ position:relative; z-index:1; display:flex; flex-direction:column; gap:var(--sp-3); padding-top:var(--sp-8); padding-bottom:var(--sp-8); }
 .kde .graphic{ width:100%; background:var(--light-surface); border-radius:var(--radius); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:var(--sp-4) var(--sp-3); text-align:center; }
 .kde .graphic img{ width:44px; opacity:.5; }
 .kde .graphic-address{ font-size:var(--fs-caption); color:var(--dark-surface); margin:0; line-height:1.5; }
+.kde h2{ font-family:'Karla',sans-serif; font-weight:700; font-size:var(--fs-h2); margin:0 0 var(--sp-2); color:var(--dark); }
 .kde .text p{ font-size:var(--fs-body); color:var(--dark-surface); max-width:48ch; margin:0; }
 @media (min-width:640px){
   .kde .inner{ flex-direction:row; align-items:stretch; }
   .kde .graphic{ flex:1 1 40%; }
-  .kde .text{ flex:1 1 60%; display:flex; align-items:center; }
+  .kde .text{ flex:1 1 60%; display:flex; flex-direction:column; justify-content:center; }
 }
 
 /* ---------- REZERVACE (Odchod — jedna tichá paralax vrstva 0.85×) ---------- */
@@ -297,9 +330,11 @@ nav.wire:not(.scrolled) .nav-cta .cta-wrap:hover .cta-halo{ opacity:0; }
   content:""; position:absolute; left:0; right:0; bottom:0; height:60px; z-index:0; pointer-events:none;
   background:linear-gradient(to bottom,
     rgba(21,14,8,0) 0%,
-    rgba(21,14,8,.06) 40%,
-    rgba(21,14,8,.3) 70%,
-    rgba(21,14,8,.7) 88%,
+    rgba(21,14,8,.02) 16.7%,
+    rgba(21,14,8,.15) 33.3%,
+    rgba(21,14,8,.5) 50%,
+    rgba(21,14,8,.85) 66.7%,
+    rgba(21,14,8,.98) 83.3%,
     rgba(21,14,8,1) 100%);
 }
 .rezervace .container{ position:relative; z-index:1; }
@@ -333,6 +368,30 @@ footer.wire .provozovna-btn{
 }
 footer.wire .links{ display:flex; gap:var(--sp-2); flex-wrap:wrap; margin-top:6px; }
 footer.wire .links a{ color:var(--decor); text-decoration:none; }
+footer.wire .legal-link{ color:var(--decor); text-decoration:underline; text-underline-offset:2px; background:none; border:none; padding:0; font-size:11px; font-family:'Karla',sans-serif; cursor:pointer; }
+
+/* ---------- GDPR modal ---------- */
+.gdpr-modal{ position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:var(--sp-3); opacity:0; pointer-events:none; transition:opacity 250ms ease; }
+.gdpr-modal.open{ opacity:1; pointer-events:auto; }
+.gdpr-modal__backdrop{ position:absolute; inset:0; background:rgba(21,14,8,.6); }
+.gdpr-modal__panel{
+  position:relative; z-index:1; background:var(--light-bg); border-radius:var(--radius);
+  max-width:640px; width:100%; max-height:80vh; overflow-y:auto;
+  padding:var(--sp-6) var(--sp-4); font-family:'Karla',sans-serif; color:var(--dark-surface);
+  transform:translateY(12px); transition:transform 250ms ease;
+}
+.gdpr-modal.open .gdpr-modal__panel{ transform:translateY(0); }
+.gdpr-modal__panel h2{ font-size:var(--fs-h2); color:var(--dark); margin:0 0 var(--sp-3); padding-right:var(--sp-4); }
+.gdpr-modal__panel h3{ font-size:var(--fs-h3); color:var(--dark); margin:var(--sp-3) 0 var(--sp-1); }
+.gdpr-modal__panel p{ margin:0 0 var(--sp-1); line-height:1.6; }
+.gdpr-modal__panel ul{ margin:0 0 var(--sp-1); padding-left:1.2em; }
+.gdpr-modal__panel li{ margin-bottom:6px; line-height:1.6; }
+.gdpr-modal__close{
+  position:absolute; top:var(--sp-2); right:var(--sp-2); width:32px; height:32px; border-radius:10px;
+  border:none; background:var(--elevated); color:var(--dark); cursor:pointer;
+  display:flex; align-items:center; justify-content:center; padding:0;
+}
+.gdpr-modal__close svg{ width:14px; height:14px; }
 footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 @media (min-width:640px){
   footer.wire .inner{ flex-direction:row; justify-content:space-between; align-items:flex-start; gap:var(--sp-6); }
@@ -390,7 +449,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 
 <!-- ================= HERO (Příchod — bez paralaxu) ================= -->
 <header id="hero" class="hero">
-  <img src="hero.jpg" alt="">
+  <img src="hero.jpg" alt="Jemně splývající textilie v teplém, tlumeném světle">
   <div class="inner">
     <h1>
       <span class="kinetic-line" data-kinetic-load><span class="word">Tady</span> <span class="word">si</span> <span class="word">můžete</span><br><span class="word">konečně</span> <span class="word">odpočinout.</span></span>
@@ -403,7 +462,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
 <section id="o-milade" class="o-milade">
   <div class="layer"></div>
   <div class="container inner">
-    <div class="photo"><img src="o-milade.jpg" alt="Milada"></div>
+    <div class="photo"><img src="o-milade.jpg" alt="Milada Vondrušová, masérka"></div>
     <div class="text">
       <h2>Něco málo o mně</h2>
       <p class="intro">Jsem Milada a věřím v léčivou sílu doteku. Ke každé masáži přistupuji s pochopením pro to, co Vaše tělo i mysl zrovna potřebují. Tady máte prostor jen pro sebe – uzemnit se, vypnout a nic neřešit. Uvolní se napětí ve svalech i v myšlenkách. Odcházet budete odpočatí, lehčí a s pocitem, že se můžete znovu zhluboka nadechnout.</p>
@@ -433,7 +492,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     <h2 class="sluzby-heading">S čím Vám ráda pomohu</h2>
     <p class="sluzby-note">Cena se zobrazí klepnutím na položku.</p>
     <div class="sub-block sub-block--split sub-block--photo-capped">
-      <div class="photo"><img src="sluzby-oblicej.jpg" alt="Obličej"></div>
+      <div class="photo"><img src="sluzby-oblicej.jpg" alt="Masáž obličeje"></div>
       <div class="split-content">
         <h3>Obličej</h3>
         <p>Ošetření a měkké techniky pro tvář a hlavu.</p>
@@ -446,7 +505,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     </div>
 
     <div class="sub-block sub-block--split sub-block--split-reverse">
-      <div class="photo"><img src="sluzby-telo.jpg" alt="Tělo"></div>
+      <div class="photo"><img src="sluzby-telo.jpg" alt="Masáž těla"></div>
       <div class="split-content">
         <h3>Tělo</h3>
         <p>Klasická, aromaterapeutická a lymfatická péče.</p>
@@ -463,7 +522,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     </div>
 
     <div class="sub-block sub-block--split">
-      <div class="photo"><img src="sluzby-access.jpg" alt="Access"></div>
+      <div class="photo"><img src="sluzby-access.jpg" alt="Jemný energetický dotek"></div>
       <div class="split-content">
         <h3>Jemný dotek <span style="font-weight:400;opacity:.6;">(Access Consciousness)</span></h3>
         <p>Laskavý energetický dotek, který uvolňuje napětí a navrací tělu i mysli lehkost.</p>
@@ -484,6 +543,7 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
       <p class="graphic-address">Floating Phoenix (Hotel Marttel)<br>Lidická 447/12, 360 01 Karlovy Vary<br>Parkování v bezprostřední blízkosti.</p>
     </div>
     <div class="text">
+      <h2>Kde mě najdete</h2>
       <p>Pracuji bez pevné otevírací doby, abych se mohla každému plně věnovat. Návštěvu si proto vždy domluvte předem, díky tomu na Vás čeká naprostý klid a prostor připravený jen pro Vaši relaxaci.</p>
     </div>
   </div>
@@ -523,16 +583,56 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
         <button class="provozovna-btn" onclick="document.getElementById('kde').scrollIntoView({behavior:'smooth'})">Provozovna: Karlovy Vary</button>
       </div>
       <div class="links">
-        <a href="#">Obchodní podmínky</a>
-        <a href="#">Zpracování osobních údajů</a>
+        <button type="button" class="legal-link" id="gdprOpenBtn">Zpracování osobních údajů</button>
       </div>
-      <p class="ai-note">Některé fotografie na webu byly upraveny/vytvořeny s pomocí AI. [text čeká na právní ověření]</p>
+      <p class="ai-note">Některé ilustrační fotografie na tomto webu byly vytvořeny pomocí nástrojů umělé inteligence pro dokreslení atmosféry.</p>
     </div>
   </div>
 </footer>
 
+<div class="gdpr-modal" id="gdprModal" aria-hidden="true">
+  <div class="gdpr-modal__backdrop" id="gdprBackdrop"></div>
+  <div class="gdpr-modal__panel" role="dialog" aria-modal="true" aria-labelledby="gdprTitle">
+    <button type="button" class="gdpr-modal__close" id="gdprCloseBtn" aria-label="Zavřít">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+        <g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none">
+          <path d="M55,55 L145,145"/>
+          <path d="M145,55 L55,145"/>
+        </g>
+      </svg>
+    </button>
+    <h2 id="gdprTitle">Zásady ochrany osobních údajů (GDPR)</h2>
+
+    <h3>Kdo vaše údaje zpracovává?</h3>
+    <p>Správcem vašich osobních údajů je Milada Vondrušová, IČO: 69455058. Vaše soukromí a pocit bezpečí jsou pro mě klíčové nejen při samotné masáži, ale i při ochraně vašich dat.</p>
+
+    <h3>Jaké údaje zpracovávám a proč?</h3>
+    <p>Jelikož objednávky probíhají osobně po telefonu, zpracovávám pouze ty informace, které mi sami dobrovolně sdělíte a které jsou naprosto nezbytné pro domluvení naší schůzky.</p>
+    <ul>
+      <li><b>Jméno a příjmení:</b> Abych věděla, pro koho termín rezervuji a jak vás mohu oslovovat.</li>
+      <li><b>Telefonní číslo:</b> Pro vzájemnou komunikaci, potvrzení času nebo případné přesunutí masáže, pokud by to bylo nutné.</li>
+      <li><b>Zdravotní omezení (volitelné):</b> Pokud mi sami během hovoru či osobní návštěvy sdělíte informace o svém zdravotním stavu (např. alergie, citlivá místa), využívám je výhradně pro zajištění maximálně bezpečné a vhodné péče.</li>
+    </ul>
+
+    <h3>Jak dlouho údaje uchovávám a s kým je sdílím?</h3>
+    <p>Vaše kontaktní údaje si ponechávám pouze po dobu, kdy u mě využíváte masérské služby, a následně po dobu vyžadovanou platnými právními předpisy (například pro účely účetnictví). Vaše údaje jsou u mě v naprostém bezpečí a nikdy je nepředávám žádným třetím stranám pro marketingové či jiné účely.</p>
+
+    <h3>Jaká jsou vaše zákonná práva?</h3>
+    <p>V souvislosti s ochranou osobních údajů máte řadu práv. Kdykoliv se na mě můžete obrátit (například na telefonním čísle uvedeném na webu), pokud budete chtít uplatnit:</p>
+    <ul>
+      <li><b>Právo na přístup:</b> Můžete se mě zeptat, jaké údaje o vás aktuálně eviduji.</li>
+      <li><b>Právo na opravu:</b> Pokud například změníte telefonní číslo, ráda si jej u sebe aktualizuji.</li>
+      <li><b>Právo na výmaz:</b> Pokud si již nepřejete využívat mé služby, vaše kontaktní údaje na požádání trvale smažu.</li>
+      <li><b>Právo podat stížnost:</b> Máte právo obrátit se na Úřad pro ochranu osobních údajů, pokud byste nabyli dojmu, že s vašimi daty nenakládám správně.</li>
+    </ul>
+  </div>
+</div>
+
 <script>
 (function(){
+  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+  if(!window.location.hash){ window.scrollTo(0, 0); }
+
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var nav = document.getElementById('mainNav');
   var hamburger = document.getElementById('hamburgerBtn');
@@ -580,6 +680,21 @@ footer.wire .ai-note{ font-size:11px; opacity:.8; margin-top:6px; }
     panel.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
   });
+
+  var gdprModal = document.getElementById('gdprModal');
+  var gdprOpenBtn = document.getElementById('gdprOpenBtn');
+  var gdprCloseBtn = document.getElementById('gdprCloseBtn');
+  var gdprBackdrop = document.getElementById('gdprBackdrop');
+  if(gdprModal && gdprOpenBtn){
+    function openGdpr(){ gdprModal.classList.add('open'); gdprModal.setAttribute('aria-hidden', 'false'); }
+    function closeGdpr(){ gdprModal.classList.remove('open'); gdprModal.setAttribute('aria-hidden', 'true'); }
+    gdprOpenBtn.addEventListener('click', openGdpr);
+    gdprCloseBtn.addEventListener('click', closeGdpr);
+    gdprBackdrop.addEventListener('click', closeGdpr);
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ closeGdpr(); }
+    });
+  }
 
   document.querySelectorAll('.price-row').forEach(function(row){
     var reveal = row.querySelector('.price-reveal');
