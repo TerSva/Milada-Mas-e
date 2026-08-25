@@ -8,17 +8,17 @@ Static one-page marketing website for "Masáže Milada" — massage therapist Mi
 
 ## Files
 
-- `wireframe.html` — the site. Single complete document: structure + all CSS (one `<style>`, organized by commented section blocks) + all JS (one inline `<script>`). The only file that gets built/deployed.
+- `index.html` — the site. Single complete document: structure + all CSS (one `<style>`, organized by commented section blocks) + all JS (one inline `<script>`). The only file that gets built/deployed.
 - `design-system-2.html` — separate, read-only reference library (like Storybook) for design tokens and base component CSS. Read from, never edited, unless the user explicitly asks to change the design system itself.
-- `kontext.md` — chronological decision log from earlier in the project. Historical record, not necessarily in sync with the current state of `wireframe.html` — treat `wireframe.html` as ground truth over kontext.md when they conflict.
-- Image/icon assets at repo root (hero.jpg, o-milade.jpg, sluzby-oblicej.jpg, sluzby-telo.jpg, sluzby-access.jpg, logo.svg, menu.svg, phone-2.svg, email-2.svg, lokace-2.svg) — referenced by exact filename from `wireframe.html`.
+- `kontext.md` — chronological decision log from earlier in the project. Historical record, not necessarily in sync with the current state of `index.html` — treat `index.html` as ground truth over kontext.md when they conflict.
+- Image/icon assets at repo root (hero.jpg, o-milade.jpg, sluzby-oblicej.jpg, sluzby-telo.jpg, sluzby-access.jpg, logo.svg, menu.svg, phone-2.svg, email-2.svg, lokace-2.svg) — referenced by exact filename from `index.html`.
 
 ## Workflow rules (standing, apply every session)
 
 - Never write/edit code without an explicit go-ahead for that specific step. A general "continue" is not permission to build — propose the step first.
 - Commit and push are two separate confirmations, each explicit.
 - `design-system-2.html` is a shared source of truth. Before changing anything shared, ask whether the change should be global (edit the shared definition) or local (one-off override) — never assume.
-- One document, organized internally — do not split `wireframe.html` into separate CSS/JS files.
+- One document, organized internally — do not split `index.html` into separate CSS/JS files.
 - When sending the file to the user, referenced local images/assets don't travel with it automatically — send them alongside with exact matching filenames.
 
 ## Copy conventions
@@ -35,7 +35,7 @@ Static one-page marketing website for "Masáže Milada" — massage therapist Mi
 - Radius: 18px uniform (--radius).
 - Type: Fraunces (variable font) only on the Hero H1; Karla everywhere else.
 
-## Structure of wireframe.html
+## Structure of index.html
 
 Nav (fixed, transparent → dark on scroll) → Hero (Příchod) → O Miladě (Dotek) → Služby (Proměna, price list) → Kde mě najdeš → Rezervace (Odchod, phone-first booking) → Footer.
 
